@@ -21,6 +21,12 @@ def ledBoard(matrix, bv):
     from rgbmatrix import Adafruit_RGBmatrix
     square(matrix, bv)
 
+def makeBlank(matrix, i, j):
+    l = 5
+    for m in range(0, l):
+        for n in range(0, l):
+            matrix.SetPixel(i + m, j + n, 0, 0, 0)
+
 def makeX(matrix, i, j):
     l = 5
     for k in range(0, l):
@@ -51,26 +57,45 @@ def square(matrix, bv):
     # FIRST ROW
     if   ((bv >> 0) & 1) == 1: makeX(matrix, 3, 3)
     elif ((bv >> 1) & 1) == 1: makeO(matrix, 3, 3)
+    else:
+        makeBlank(matrix, 3, 3)
     if   ((bv >> 2) & 1) == 1: makeX(matrix, 13, 3)
     elif ((bv >> 3) & 1) == 1: makeO(matrix, 13, 3)
+    else:
+        makeBlank(matrix, 13, 3)
     if   ((bv >> 4) & 1) == 1: makeX(matrix, 23, 3)
     elif ((bv >> 5) & 1) == 1: makeO(matrix, 23, 3)
+    else:
+        makeBlank(matrix, 23, 3)
 
     # SECOND ROW
     if   ((bv >> 6) & 1) == 1: makeX(matrix, 3, 13)
     elif ((bv >> 7) & 1) == 1: makeO(matrix, 3, 13)
+    else:
+        makeBlank(matrix, 3, 13)
     if   ((bv >> 8) & 1) == 1: makeX(matrix, 13, 13)
     elif ((bv >> 9) & 1) == 1: makeO(matrix, 13, 13)
+    else:
+        makeBlank(matrix, 13, 13)
     if   ((bv >> 10) & 1) == 1: makeX(matrix, 23, 13)
     elif ((bv >> 11) & 1) == 1: makeO(matrix, 23, 13)
+    else:
+        makeBlank(matrix, 23, 13)
 
     # THIRD ROW
     if   ((bv >> 12) & 1) == 1: makeX(matrix, 3, 23)
     elif ((bv >> 13) & 1) == 1: makeO(matrix, 3, 23)
+    else:
+        makeBlank(matrix, 3, 23)
     if   ((bv >> 14) & 1) == 1: makeX(matrix, 13, 23)
     elif ((bv >> 15) & 1) == 1: makeO(matrix, 13, 23)
+    else:
+        q
+        makeBlank(matrix, 3, 23)
     if   ((bv >> 16) & 1) == 1: makeX(matrix, 23, 23)
     elif ((bv >> 17) & 1) == 1: makeO(matrix, 23, 23)
+    else:
+        makeBlank(matrix, 23, 23)
 
 def getCell(bv, r, c):
     if ((bv >> getCellNumber(r, c, 'o')) & 1) != 0:
