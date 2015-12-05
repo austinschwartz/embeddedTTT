@@ -2,6 +2,8 @@ import socket, select, string, sys
 from board import *
 
 board = 0
+pi = False
+matrix = None
 
 def prompt() :
     sys.stdout.write('> ')
@@ -9,12 +11,17 @@ def prompt() :
  
 if __name__ == "__main__":
      
-    if(len(sys.argv) < 3) :
-        print 'Usage : python otherClient.py hostname port'
+    if(len(sys.argv) < 4) :
+        print 'Usage : python client.py (pi|reg) hostname port'
         sys.exit()
      
-    host = sys.argv[1]
-    port = int(sys.argv[2])
+    if sys.argv[1] == 'pi':
+        pi = True
+        from rgbmatrix import Adafruit_RGBmatrix
+        matrix = Adafruit_RGBmatrix(32, 1)
+
+    host = sys.argv[2]
+    port = int(sys.argv[3])
      
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     s.settimeout(2)
@@ -47,8 +54,9 @@ if __name__ == "__main__":
                     try:
                         board = int(data.strip())
                         print ""
+                        if pi:
+                            ledBoard(matrix, board)
                         drawBoard(board)
-                        print board
                     except ValueError:
                         pass
                     prompt()
