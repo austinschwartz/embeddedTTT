@@ -18,12 +18,17 @@ if __name__ == "__main__":
      
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     s.settimeout(2)
-     
-    try :
+    try:
         s.connect((host, port))
-    except :
-        print 'Unable to connect'
-        sys.exit()
+    except:
+        while 1:
+            try :
+                s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+                s.settimeout(2)
+                s.connect((host, port))
+                break
+            except :
+                print 'Unable to connect'
      
     print 'Connected to remote host. Start sending messages'
     prompt()
