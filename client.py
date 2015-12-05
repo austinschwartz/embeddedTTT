@@ -35,9 +35,9 @@ if __name__ == "__main__":
                 s.connect((host, port))
                 break
             except :
-                print 'Unable to connect'
+                print 'Attempting to connect...'
+                time.sleep(5)
      
-    print 'Connected to remote host. Start sending messages'
     prompt()
      
     while 1:
