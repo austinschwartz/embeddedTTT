@@ -39,6 +39,7 @@ if __name__ == "__main__":
                 sockfd, addr = server_socket.accept()
                 CONNECTION_LIST.append(sockfd)
                 print "Client (%s, %s) connected" % addr
+                broadcast_data(sockfd, "\r" + str(board))
                 #broadcast_data(sockfd, "[%s:%s] entered room\n" % addr)
             else:
                 try:
