@@ -55,6 +55,7 @@ if __name__ == "__main__":
                         board = int(data.strip())
                         print ""
                         if pi:
+                            print board
                             ledBoard(matrix, board)
                         drawBoard(board)
                     except ValueError:

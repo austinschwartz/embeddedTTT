@@ -11,8 +11,15 @@ gr = 150
 gg = 00
 gb = 0
 
+def clear(matrix):
+    for i in range(0, 32):
+        for j in range(0, 32):
+            matrix.setPixel(i, j, 0, 0, 0)
+
+
 def ledBoard(matrix, bv):
     from rgbmatrix import Adafruit_RGBmatrix
+    clear(matrix)
     square(matrix, bv)
 
 def makeX(matrix, i, j):
