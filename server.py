@@ -47,6 +47,7 @@ if __name__ == "__main__":
                     if data:
                         s = data
                         if (sock.getpeername() != last):
+                            winnerDetected = False
                             if lastType == 'x':
                                 lastType = 'o'
                             elif lastType == 'o':
@@ -61,6 +62,7 @@ if __name__ == "__main__":
                             elif lastType == 'o':
                                 board = board | (1 << (convert(s) + 1))
                             if (winner(board) != ' '):
+                                winnerDetected = True
                                 board = 0
                                 drawBoard(board)
                             broadcast_data(sock, "\r" + str(board))
@@ -69,6 +71,9 @@ if __name__ == "__main__":
                             for socko in read_sockets:
                                 if socko != sock:
                                     broadcast_data(socko, "\r" + str(board))
+                            if winnerDetected:
+                                last = ()
+                                lastType = ' '
                         else:
                             print 'Not their turn'
 
