@@ -66,7 +66,9 @@ if __name__ == "__main__":
                             broadcast_data(sock, "\r" + str(board))
                             drawBoard(board)
                             last = sock.getpeername()
-                            read_sockets[0].send(str(board))
+                            for socko in read_sockets:
+                                if socko != sock:
+                                    broadcast_data(socko, "\r" + str(board))
                         else:
                             print 'Not their turn'
 
