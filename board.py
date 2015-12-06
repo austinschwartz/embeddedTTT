@@ -90,7 +90,7 @@ def square(matrix, bv):
     if   ((bv >> 14) & 1) == 1: makeX(matrix, 13, 23)
     elif ((bv >> 15) & 1) == 1: makeO(matrix, 13, 23)
     else:
-        makeBlank(matrix, 3, 23)
+        makeBlank(matrix, 13, 23)
     if   ((bv >> 16) & 1) == 1: makeX(matrix, 23, 23)
     elif ((bv >> 17) & 1) == 1: makeO(matrix, 23, 23)
     else:
